@@ -1,4 +1,4 @@
-# Project Name
+# Node Beginner Book
 
 ## Overview
-A brief description of the project
+Learning Node.
