@@ -1,18 +1,31 @@
-function start() {
+const exec = require("child_process").exec;
+
+function start(response) {
     console.log('Request handler "start" was called.');
 
-    function sleep(milliSeconds) {
-        const starTime = new Date().getTime();
-        while (new Date().getTime() < starTime + milliSeconds);
-    }
+    const body = '<html>'+
+    '<head>'+
+    '<meta http-equiv="Content-Type" content="text/html; '+
+    'charset=UTF-8" />'+
+    '</head>'+
+    '<body>'+
+    '<form action="/upload" method="post">'+
+    '<textarea name="text" rows="20" cols="60"></textarea>'+
+    '<input type="submit" value="Submit text" />'+
+    '</form>'+
+    '</body>'+
+    '</html>';
 
-    sleep(10000);
-    return "Hello Start";
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write(body);
+    response.end();
 }
 
-function upload() {
+function upload(response) {
     console.log('Request handler "upload" was called."');
-    return "Hello Upload";
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("Hello Upload");
+    response.end();
 }
 
 exports.start = start;
